@@ -56,8 +56,8 @@ def log(text):
 def process_playlist(url, job_id=1):
     logging.basicConfig(
         level=logging.INFO,
-        filename=f"{job_id}.log",
-        filemode="a",
+        # filename=f"{job_id}.log",
+        # filemode="a",
         format="%(levelname)s - %(message)s",
     )
 
@@ -71,6 +71,10 @@ def process_playlist(url, job_id=1):
     )
     json_data = result.group(1)
     json_data = json.loads(json_data)
+
+    if not json_data["clips"]:
+        logging.error('No clips')
+        return
 
     for clip in json_data["clips"]:
         clip_config_url = clip["config"]
