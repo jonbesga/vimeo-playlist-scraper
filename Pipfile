@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 black = "*"
 flake8 = "*"
+selenium = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
