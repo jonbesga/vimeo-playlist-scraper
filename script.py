@@ -13,7 +13,7 @@ from selenium.webdriver.common.by import By
 
 def make_request(url):
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6"
     }
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
