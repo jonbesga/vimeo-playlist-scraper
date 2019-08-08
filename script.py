@@ -5,7 +5,7 @@ import os
 import argparse
 import logging
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -46,6 +46,9 @@ def login(driver, login_url, username, password):
     driver.find_element_by_id("iump_login_username").send_keys(username)
     driver.find_element_by_id("iump_login_password").send_keys(password)
     driver.find_element_by_xpath('//*[@id="ihc_login_form"]/div[6]/input').click()
+    wait(driver, 30).until(
+        EC.title_is('Gov3dstudio - Academia de artes digitales en Español')
+    )
     print("Logging successful")
 
 
@@ -68,7 +71,7 @@ def get_app_data_script(driver, url):
 def process_playlist(url, login_url=None, username=None, password=None):
     options = Options()
     options.headless = False
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Chrome(options=options)
     if login_url and username and password:
         login(driver, login_url, username, password)
 
