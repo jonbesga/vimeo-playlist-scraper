@@ -64,7 +64,6 @@ def get_app_data_script(driver, url):
     wait(driver, 30).until(EC.presence_of_element_located((By.ID, "app-data")))
     data = driver.find_element_by_id("app-data")
     response = data.get_attribute("innerHTML")
-    driver.close()
     return response
 
 
@@ -78,7 +77,7 @@ def process_playlist(url, login_url=None, username=None, password=None):
     logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 
     json_data = get_app_data_script(driver, url)
-
+    driver.quit()
     json_data = json.loads(json_data)
     course_title = json_data["playlist_data"]["title"]
     course_path = create_course_folder(course_title)
